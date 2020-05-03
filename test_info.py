@@ -7,6 +7,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 def spider(comp_name):
@@ -17,8 +18,10 @@ def spider(comp_name):
   # 2 - Block all images
   # 3 - Block 3rd party images 
   profile.set_preference("permissions.default.image", 2)
+  options = Options()
+  options.add_argument('-headless')
 
-  driver = webdriver.Firefox(firefox_profile=profile)
+  driver = webdriver.Firefox(firefox_profile=profile,options=options)
   
   driver.get("https://www.zaubacorp.com/")
   driver.set_window_size(890, 751)
